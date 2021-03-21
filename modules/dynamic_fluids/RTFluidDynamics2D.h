@@ -7,20 +7,32 @@
 #ifndef _RTFD_2D_H
 #define _RTFD_2D_H
 
-#include "../../scene/2d/node_2d.h"
+#include "scene/2d/node_2d.h"
+#include "core/math/vector2.h"
 
 class RTFluidDynamics2D : public Node2D
 {
     GDCLASS(RTFluidDynamics2D, Node2D);
 public:
 
-    RTFluidDynamics2D(/* args */);
+    RTFluidDynamics2D();
     ~RTFluidDynamics2D();
 
-    void test();
+    void _init();
+    void _physics_process(float delta);
+
+    void add_velocity(Vector2 position, float amount);
+    void add_density(Vector2 position, float amount);
+
+    void set_grid_size(Vector2 size);
+    Vector2 get_grid_size();
+
+public:
+    Vector2 grid_size = Vector2(10, 10);
 
 protected:
     static void _bind_methods();
+
 };
 
 
