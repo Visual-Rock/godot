@@ -18,6 +18,7 @@ public:
     RTFluidDynamics2D();
     ~RTFluidDynamics2D();
 
+    void _notification(int p_what);
     void _init();
     void _physics_process(float delta);
 

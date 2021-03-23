@@ -1,12 +1,26 @@
 #include "RTFluidDynamics2D.h"
 
-RTFluidDynamics2D::RTFluidDynamics2D(/* args */)
+RTFluidDynamics2D::RTFluidDynamics2D()
 {
-    print_line("Constructor");
+    
 }
 
 RTFluidDynamics2D::~RTFluidDynamics2D()
 {
+}
+
+void RTFluidDynamics2D::_notification(int p_what)
+{
+    switch (p_what)
+    {
+    case NOTIFICATION_READY:
+        print_line("ready");
+        print_line(grid_size);
+        break;
+    
+    default:
+        break;
+    }
 }
 
 void RTFluidDynamics2D::add_velocity(Vector2 position, float amount)
@@ -31,6 +45,8 @@ Vector2 RTFluidDynamics2D::get_grid_size()
 
 void RTFluidDynamics2D::_bind_methods()
 {
+    ClassDB::bind_method(D_METHOD("_notification", "p_what"), &RTFluidDynamics2D::_notification);
+
     ClassDB::bind_method(D_METHOD("add_velocity", "position", "amount"), &RTFluidDynamics2D::add_velocity);
     ClassDB::bind_method(D_METHOD("add_density", "position", "amount"), &RTFluidDynamics2D::add_density);
     ClassDB::bind_method(D_METHOD("set_grid_size", "size"), &RTFluidDynamics2D::set_grid_size);
